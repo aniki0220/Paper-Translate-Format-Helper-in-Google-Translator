@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      1.3.3
+// @version      2.0.1
 // @description  ez way to translate with google
 // @author       NDM
 // @include      https://translate.google.com*
