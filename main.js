@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.0.1
+// @version      2.1.0
 // @description  ez way to translate with google
 // @author       NDM
 // @include      https://translate.google.com*
@@ -30,7 +30,8 @@
     newButton2.onclick = ()=>{
         var targetSpans = document.getElementsByClassName("tlid-translation")[0].getElementsByTagName("span");
         for(i in targetSpans){
-            targetSpans[i].innerHTML += "\n<br><font color=blue>" + s[i] + ".</font>";
+            var temp = targetSpans[i].innerHTML;
+            targetSpans[i].innerHTML = "<font color=blue>" + s[i] + ".</font><br>" + temp;
         }
     }
 
