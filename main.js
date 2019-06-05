@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.1.2
+// @version      2.1.3
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
