@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.1.0
-// @description  ez way to translate with google
+// @version      2.1.1
+// @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
 
@@ -20,19 +20,53 @@
     newButton1.style.borderStyle="solid";
     newButton1.style.cursor="pointer";
     newButton1.onclick = ()=>{
-        source.value = source.value.replace(/\n/g, " ");
-        s = source.value.split(".");
-        source.value = source.value.replace(/\. /g, ".\n\n");
+
+        //preprocessing
+        source.value = source.value.replace(/\n/g, " ");        
+        source.value = source.value.replace(/\;/g, ";.");
+        source.value = source.value.replace(/i\.e\./g, "i*e*");   // i.e.
+        
+
+        //format
+        source.value = source.value.replace(/\. /g, ".\n\n");   
+
+        source.value = source.value.replace(/i\*e\*/g, "i.e."); // i.e.
+        source.value = source.value.replace(/  /g, " ");
+        source.value = source.value.replace(/\n /g, "\n");
+        source.value = source.value.replace(/\;\./g, ";");
+        // s = source.value.split(".\n\n");
+        source.value += "\n\n";
+        var separators = ['.\n\n', '\;'];
+        s = source.value.split(new RegExp(separators.join('|'),'g'));
     }
+
+
     newButton2.innerHTML="比對";
     newButton2.style.borderStyle="solid";
     newButton2.style.cursor="pointer";
     newButton2.onclick = ()=>{
         var targetSpans = document.getElementsByClassName("tlid-translation")[0].getElementsByTagName("span");
-        for(i in targetSpans){
-            var temp = targetSpans[i].innerHTML;
-            targetSpans[i].innerHTML = "<font color=blue>" + s[i] + ".</font><br>" + temp;
+        console.log(targetSpans);
+        
+        if (s == ""){
+            alert("請先按下「排版」，才可進行「比對」")
+            return false
         }
+        if (targetSpans.length == 0){
+            alert("字數過多，1000字以內才可使用「比對」功能")
+            return false
+        }
+
+        for(i in targetSpans){
+            // console.log(s[i][0]);
+            while(s[i][0] == " ")
+                s[i] = s[i].substr(1)
+            // targetSpans[i].innerHTML += "\n<br><font color=blue>" + s[i] + ".</font>";
+            var temp = targetSpans[i].innerHTML; 
+            targetSpans[i].innerHTML = "<font color=blue>" + s[i] + ".</font><br>" + temp; 
+        }
+        console.log(s);
+        
     }
 
     buttonSite.appendChild(newButton1);
