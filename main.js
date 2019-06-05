@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.1.2
+// @version      2.1.3
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -15,7 +15,7 @@
     var buttonSite = document.getElementsByClassName("tlid-input-button-container")[0]
     var newButton1 = document.createElement("span");
     var newButton2 = document.createElement("span");
-    var s = ''
+    var s = ""
     newButton1.innerHTML="排版";
     newButton1.style.borderStyle="solid";
     newButton1.style.cursor="pointer";
@@ -36,6 +36,8 @@
         source.value = source.value.replace(/\;\./g, ";");
         // s = source.value.split(".\n\n");
         source.value += "\n\n";
+
+        s = "done"
     }
 
 
