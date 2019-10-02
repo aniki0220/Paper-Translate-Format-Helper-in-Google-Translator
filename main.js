@@ -25,6 +25,7 @@
         source.value = source.value.replace(/\n/g, " ");        
         source.value = source.value.replace(/\;/g, ";.");
         source.value = source.value.replace(/i\.e\./g, "i*e*");   // i.e.
+        source.value = source.value.replace(" al.", " al");  // ... al. 
         
 
         //format
