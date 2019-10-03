@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.1.4
+// @version      2.2.0
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -73,7 +73,33 @@
         
     }
 
+    newButton3.innerHTML="比對";
+    newButton3.style.borderStyle="solid";
+    newButton3.style.cursor="pointer";
+    newButton3.onclick = ()=>{
+        org  = document.getElementsByClassName('text-dummy')[0]
+	       tran = document.getElementsByClassName('tlid-translation')[0]
+	       orgText  = org.innerHTML
+        tranText = tran.innerText
+	
+	       orgText  = orgText.split('\n')
+	       tranText = tranText.split('\n')
+	
+	       result = ''
+	       for(var i = 0; i<=tranText.length; i++ ){
+        	       if (orgText[i] == null)
+            	       break
+        
+        	       if (orgText[i] != '')
+            	       temp = '<span  style="color:blue;">' + orgText[i] + '</span>' + '<br>' + '<span>' + tranText[i] + '</span><br>'
+        	       else
+            	       temp = '<br>'
+        	       result += temp
+    	   }
+	       tran.innerHTML = result
+        
+	       }
     buttonSite.appendChild(newButton1);
-    buttonSite.appendChild(newButton2);
+    buttonSite.appendChild(newButton3);
 
 })();
