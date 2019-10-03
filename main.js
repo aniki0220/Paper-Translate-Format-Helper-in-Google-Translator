@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.3.0
+// @version      2.4.0
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -77,28 +77,30 @@
     newButton3.style.borderStyle="solid";
     newButton3.style.cursor="pointer";
     newButton3.onclick = ()=>{
-        org  = document.getElementsByClassName('text-dummy')[0]
-	       tran = document.getElementsByClassName('tlid-translation')[0]
-	       orgText  = org.innerHTML
-        tranText = tran.innerText
+	org  = document.getElementsByClassName('text-dummy')[0]
+	tran = document.getElementsByClassName('tlid-translation')[0]
+	orgText  = org.innerHTML.split('\n')
+	tranText = tran.innerText.split('\n')
+	    
+	if(tranText.length >= orgText.length*1.5)
+		r=confirm("已產生比對結果，再執行會毀掉畫面，仍要執行?\n若要重新比對，先讓Goolge重新翻譯")
+	if(r == false)
+		return
 	
-	       orgText  = orgText.split('\n')
-	       tranText = tranText.split('\n')
-	
-	       result = ''
-	       for(var i = 0; i<=tranText.length; i++ ){
-        	       if (orgText[i] == null)
-            	       break
-        
-        	       if (orgText[i] != '')
-            	       temp = '<span  style="color:blue;">' + orgText[i] + '</span>' + '<br>' + '<span>' + tranText[i] + '</span><br>'
-        	       else
-            	       temp = '<br>'
-        	       result += temp
-    	   }
-	       tran.innerHTML = result
-        
-	       }
+	result = ''
+	for(var i = 0; i<=tranText.length; i++ ){
+	       if (orgText[i] == null)
+	       break
+
+	       if (orgText[i] != '')
+	       temp = '<span  style="color:blue;">' + orgText[i] + '</span>' + '<br>' + '<span>' + tranText[i] + '</span><br>'
+	       else
+	       temp = '<br>'
+	       result += temp
+	}
+	tran.innerHTML = result
+
+       }
     buttonSite.appendChild(newButton1);
     buttonSite.appendChild(newButton3);
 
