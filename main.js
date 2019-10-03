@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.4.0
+// @version      2.4.1
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -81,7 +81,8 @@
 	tran = document.getElementsByClassName('tlid-translation')[0]
 	orgText  = org.innerHTML.split('\n')
 	tranText = tran.innerText.split('\n')
-	    
+	
+	var r = true
 	if(tranText.length >= orgText.length*1.5)
 		r=confirm("已產生比對結果，再執行會毀掉畫面，仍要執行?\n若要重新比對，先讓Goolge重新翻譯")
 	if(r == false)
