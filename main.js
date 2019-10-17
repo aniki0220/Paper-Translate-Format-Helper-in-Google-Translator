@@ -116,7 +116,7 @@
     	link.id   = cssId;
     	link.rel  = 'stylesheet';
     	link.type = 'text/css';
-    	link.href = 'https://raw.githubusercontent.com/aniki0220/Paper-Translate-Format-Helper-in-Google-Translator/master/style.css';
+    	link.href = 'https://raw.githack.com/aniki0220/Paper-Translate-Format-Helper-in-Google-Translator/master/style.css';
     	link.media = 'all';
     	head.appendChild(link);
     }
