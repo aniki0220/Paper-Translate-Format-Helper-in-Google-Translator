@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.4.1
+// @version      2.5.1
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -19,6 +19,7 @@
     newButton1.innerHTML="排版";
     newButton1.style.borderStyle="solid";
     newButton1.style.cursor="pointer";
+    newButton1.className = "mishka";
     newButton1.onclick = ()=>{
 
         //preprocessing
@@ -76,6 +77,7 @@
     newButton3.innerHTML="比對";
     newButton3.style.borderStyle="solid";
     newButton3.style.cursor="pointer";
+    newButton3.className = "mishka";
     newButton3.onclick = ()=>{
 	org  = document.getElementsByClassName('text-dummy')[0]
 	tran = document.getElementsByClassName('tlid-translation')[0]
@@ -105,4 +107,17 @@
     buttonSite.appendChild(newButton1);
     buttonSite.appendChild(newButton3);
 
+	
+	
+    var cssId = 'mishka';  // you could encode the css path itself to generate id..
+    if (!document.getElementById(cssId)){
+    	var head  = document.getElementsByTagName('head')[0];
+    	var link  = document.createElement('link');
+    	link.id   = cssId;
+    	link.rel  = 'stylesheet';
+    	link.type = 'text/css';
+    	link.href = 'https://raw.githubusercontent.com/aniki0220/Paper-Translate-Format-Helper-in-Google-Translator/master/style.css';
+    	link.media = 'all';
+    	head.appendChild(link);
+    }
 })();
