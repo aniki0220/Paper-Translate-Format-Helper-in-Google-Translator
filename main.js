@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.6.2
+// @version      2.6.3
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -96,7 +96,7 @@
 	       break
 
 	       if (orgText[i] != '')
-	       temp = '<span>' + tranText[i] + '</span>' + '<br>' + '<span style="color:blue;font-size:8pt">&nbsp;&nbsp;&nbsp;&nbsp;' + orgText[i] + '</span><br>'
+	       temp = '<span>' + tranText[i] + '</span>' + '<br>' + '<span style="color:blue;font-size:10pt">&nbsp;&nbsp;&nbsp;&nbsp;' + orgText[i] + '</span><br>'
 	       else
 	       temp = '<br>'
 	       result += temp
