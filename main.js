@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.5.1
+// @version      2.6.1
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
 
 // @grant        unsafeWindow
+// @namespace https://greasyfork.org/users/180333
 // ==/UserScript==
  
 
@@ -15,6 +16,7 @@
     var buttonSite = document.getElementsByClassName("tlid-input-button-container")[0]
     var newButton1 = document.createElement("span");
     var newButton3 = document.createElement("span");
+    var newButton4 = document.createElement("span");
     var s = ""
     newButton1.innerHTML="排版";
     newButton1.style.borderStyle="solid";
@@ -42,39 +44,7 @@
         s = "done"
     }
 
-
-//     newButton2.innerHTML="比對";
-//     newButton2.style.borderStyle="solid";
-//     newButton2.style.cursor="pointer";
-//     newButton2.onclick = ()=>{
-//         var targetSpans = document.getElementsByClassName("tlid-translation")[0].getElementsByTagName("span");
-//         // console.log(targetSpans);
-        
-//         if (s == ""){
-//             alert("請先按下「排版」，才可進行「比對」")
-//             return false
-//         }
-//         if (targetSpans.length == 0){
-//             alert("字數過多，1000字以內才可使用「比對」功能")
-//             return false
-//         }
-        
-//         var separators = ['.\n\n', '\;'];
-//         s = source.value.split(new RegExp(separators.join('|'),'g'));
-
-//         for(i in targetSpans){
-//             // console.log(s[i][0]);
-//             while(s[i][0] == " ")
-//                 s[i] = s[i].substr(1)
-//             // targetSpans[i].innerHTML += "\n<br><font color=blue>" + s[i] + ".</font>";
-//             var temp = targetSpans[i].innerHTML; 
-//             targetSpans[i].innerHTML = "<font color=blue>" + s[i] + ".</font><br>" + temp; 
-//         }
-//         console.log(s);
-        
-//     }
-
-    newButton3.innerHTML="比對";
+    newButton3.innerHTML="比對(英+中)";
     newButton3.style.borderStyle="solid";
     newButton3.style.cursor="pointer";
     newButton3.className = "mishka";
@@ -104,8 +74,40 @@
 	tran.innerHTML = result
 
        }
+    newButton4.innerHTML="比對(中+英)";
+    newButton4.style.borderStyle="solid";
+    newButton4.style.cursor="pointer";
+    newButton4.className = "mishka";
+    newButton4.onclick = ()=>{
+	org  = document.getElementsByClassName('text-dummy')[0]
+	tran = document.getElementsByClassName('tlid-translation')[0]
+	orgText  = org.innerHTML.split('\n')
+	tranText = tran.innerText.split('\n')
+	
+	var r = true
+	if(tranText.length >= orgText.length*1.5)
+		r=confirm("已產生比對結果，再執行會毀掉畫面，仍要執行?\n若要重新比對，先讓Goolge重新翻譯")
+	if(r == false)
+		return
+	
+	result = ''
+	for(var i = 0; i<=tranText.length; i++ ){
+	       if (orgText[i] == null)
+	       break
+
+	       if (orgText[i] != '')
+	       temp = '<span>' + tranText[i] + '</span>' + '<br>' + '<span style="color:blue;">&nbsp;&nbsp;' + orgText[i] + '</span><br>'
+	       else
+	       temp = '<br>'
+	       result += temp
+	}
+	tran.innerHTML = result
+
+       }
+
     buttonSite.appendChild(newButton1);
     buttonSite.appendChild(newButton3);
+    buttonSite.appendChild(newButton4);
 
 	
 	
@@ -120,4 +122,5 @@
     	link.media = 'all';
     	head.appendChild(link);
     }
+
 })();
