@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         GoogleTranslate_paperHelper
-// @version      2.7.0
+// @version      2.8.0
 // @description  ez way to C and V
 // @author       NDM
 // @include      https://translate.google.com*
@@ -45,7 +45,8 @@
 
 		//format
 		source.value = source.value.replace(/\. /g, ".\n\n");
-
+		source.value = source.value.replace(/\? /g, "?\n\n");
+		source.value = source.value.replace(/\! /g, "!\n\n");
 		source.value = source.value.replace(/i\*e\*/g, "i.e."); // i.e.
 		source.value = source.value.replace(/  /g, " ");
 		source.value = source.value.replace(/\n /g, "\n");
